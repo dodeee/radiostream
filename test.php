@@ -16,6 +16,13 @@ if($courant and ($courant[0] != $son_precedent or $son_precedent == -1)){
 //sinon on doit aller chercher un nouveau son au hasard dans le repertoire des sons
 else {
 	$directory = 'son/';
+	/*$playlist = $db->getPlaylistCourante();
+	if($playlist){
+		$directory .= $playlist . "/";
+	} else {
+		exit('No playlist');
+	}
+	*/
 	if (!is_dir($directory)) {
 	    exit('Invalid diretory path');
 	}

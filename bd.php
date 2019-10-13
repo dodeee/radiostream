@@ -42,6 +42,21 @@ class Connexion{
 		$stmt = $this->db->prepare("DELETE FROM passee_ajd");
 		$stmt->execute();
 	}
+	public function getPlaylistCourante(){
+		$heure = date("G");
+		$jour = date("N");
+		//on suppose que les playlist se repetent sur une semaine
+		//Ne fonctionne pas dans le cas ou la playlist chevauche dimanche/lundi
+		$stmt = $this->db->prepare("SELECT nom FROM playlist 
+									WHERE ((heuredebut <= :heure and jourdebut = :jour) or jourdebut < :jour) 
+									and ((heurefin > :heure and jourfin = :jour) or jourfin > :jour);");
+		$stmt->bindParam(':heure', $heure);
+		$stmt->bindParam(':jour', $jour);
+		$stmt->execute();
+		$res = $stmt->fetch();
+		if($res){ return $res[0]; } 
+		else { return $res; }
+	}
 }
 $db = new Connexion();
 ?>

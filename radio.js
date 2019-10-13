@@ -27,7 +27,11 @@ function charger_son(son, time){
 	     		var duree = Math.round(sound.duration());
 	     		var sec = duree%60;
 	     		var min = Math.floor(duree / 60);
-	     		document.getElementById("timer-total").innerHTML = "durée musique : "+min + " : " +sec;
+	     		document.getElementById("timer-total").innerHTML = "durée musique : "+min + " : "
+	     		if(sec <=10) {
+	     			document.getElementById("timer-total").innerHTML += "0"
+	     		}
+ 				document.getElementById("timer-total").innerHTML +=sec
 	     	},
 	     	onplay:function(){
 	     		document.getElementById("timer-courant").innerHTML = "temps départ : "+sound.seek();
@@ -52,6 +56,13 @@ function charger_son(son, time){
 		}
 		sound.volume(vol);
 	}
+
+
+}
+
+function timer(){
+	console.log('blablou')
+		//document.getElementById("timer").innerHTML = timer +  
 
 
 }
